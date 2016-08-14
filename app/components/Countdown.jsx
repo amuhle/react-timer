@@ -17,7 +17,7 @@ var Countdown = React.createClass({
           this.startTimer();
           break;
         case 'stopped':
-          this.setState({count: 0});
+          this.setState({count: 0, parentStatus: 'paused'});
         case 'paused':
           clearInterval(this.timer);
           this.timer = undefined;
@@ -56,7 +56,7 @@ var Countdown = React.createClass({
     var {count, countdownStatus} = this.state;
     var renderControlArea = () => {
       if(countdownStatus !== 'stopped'){
-        return (<Controls countdownStatus={countdownStatus} onStatusChange={this.handleStatusChange} />);
+        return (<Controls parentStatus={countdownStatus} onStatusChange={this.handleStatusChange} />);
       } else {
         return (<CountdownForm onSetCountdown={this.handleSetCountdown} />);
       }
